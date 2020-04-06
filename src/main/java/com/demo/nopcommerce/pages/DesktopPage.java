@@ -10,18 +10,19 @@ public class DesktopPage extends Utility {
     By addtoCartbtn = By.id("add-to-cart-button-1");
     By productAddSfullyText = By.xpath("//p[@class='content']");
 
+    // METHOD FOR CLICK ON BUILD YOUR OWN COMPUTER LINK
     public void clickOnBuiltYourOwnComputerLink() {
         clickOnElement(builtYrOwnComLink);
     }
-
+    // METHOD FOR CLICK ON 400GB HARDDRIVE
     public void clickOn400GBHarddrive() {
         clickOnElement(harddrive400GB);
     }
-
+    // METHOD FOR CLICK ON ADD TO CART BUTTON
     public void clickAddToCartButton() {
         clickOnElement(addtoCartbtn);
     }
-
+    // METHOD FOR ASSERT PRODUCT ADD SUCESSFULLY TEXT
     public void assertProductAddSuccessfullyText() {
         verifyText(productAddSfullyText, "The product has been added to your shopping cart");
     }

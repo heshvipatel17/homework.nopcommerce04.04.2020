@@ -12,16 +12,22 @@ public class RegisterTest extends TestBase {
     String email = null;
     String password = "Abc@123";
 
+    // OBJECT CREATE FOR HOME PAGE
     HomePage homePage = new HomePage();
+    // OBJECT CREATE FOR REGISTER PAGE
     RegisterPage registerpage = new RegisterPage();
 
     @Test
+    // METHOD FOR USER NAVIGATE TO REGISTER PAGE
     public void varifyUserShouldNavigateToRegisterPage() {
+
+        // CALL CLICK ON REGISTER LINK METHOD FROM HOME PAGE
         homePage.clickOnRegisterLink();
+        // CALL ASSERT METHOD FROM REGISTER PAGE FOR ASSERT ACTUAL AND EXPECTED TEXT
         registerpage.assertTextYourPersonalDetail();
 
     }
-
+    // RANDOM EMAIL MATHOD
     @BeforeTest
     public void sendemail() {
         email = "test" + Utility.getRandomString(5) + "@gmail.com";
@@ -30,7 +36,9 @@ public class RegisterTest extends TestBase {
     }
 
     @Test
+    // METHOD FOR REGISTER NOPCOMMERCE
     public void varifyUserShouldRegisterSuccessfully() throws InterruptedException {
+
         homePage.clickOnRegisterLink();
         Thread.sleep(3000);
         registerpage.clickOnGenderRadioButton();
@@ -44,7 +52,7 @@ public class RegisterTest extends TestBase {
         registerpage.enterPassword(password);
         registerpage.enterConfirmPassword(password);
         registerpage.clickOnRegisterButton();
-
+        // CALL ASSERT METHOD FROM REGISTER PAGE AND ASSERT ACTUAL AND EXPECTED TEXT
         registerpage.assertRegisterCompletedText();
 
     }

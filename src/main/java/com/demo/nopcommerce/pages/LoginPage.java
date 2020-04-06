@@ -11,23 +11,24 @@ public class LoginPage extends Utility {
     By welcomeText = By.xpath("//div[@class='page-title']//h1");
     By welcomeStoreText = By.xpath("//div[@class='topic-block-title']//h2[text()='Welcome to our store']");
 
+//  METHOD FOR ENTER EMAIL ON EMAIL FIELD
     public void enterEmailId(String email) {
         sendTextToElement(emailField, email);
     }
-
+//  METHOD FOR ENTER PASSWORD ON PASSWORD FIELD
     public void enterPassword(String password) {
         sendTextToElement(passwordField, password);
     }
-
+//  METHOD FOR CLICK ON LOGIN BUTTON
     public void clickOnLoginButton() {
         clickOnElement(loginBtn);
     }
 
-
+//  METHOD FOR ASSERT WELCOME TEXT
     public void assertgetWelcomeText() {
         verifyText(welcomeText, "Welcome, Please Sign In!");
     }
-
+//  METHOD FOR ASSERT WELCOME STORE TEXT
     public void assertgetWelcomeStoreText() {
         verifyText(welcomeStoreText, "Welcome to our store");
     }

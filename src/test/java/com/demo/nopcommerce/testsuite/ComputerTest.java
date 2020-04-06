@@ -9,14 +9,19 @@ import org.testng.annotations.Test;
 
 public class ComputerTest extends TestBase {
 
+    // OBJECT CREATE FOR HOME PAGE
     HomePage homePage = new HomePage();
+    // OBJECT CREATE FOR COMPUTER PAGE
     ComputerPage computerPage = new ComputerPage();
+    //OBJECT CREATE FOR DESKTOP PAGE
     DesktopPage desktopPage = new DesktopPage();
+
     public JavascriptExecutor js;
     public JavascriptExecutor jse;
 
 
     @Test
+    // METHOD FOR NAVIGATE COMPUTER PAGE
     public void UserShouldNavigateToComputerPage() {
         homePage.clickOnComputerLink();
         computerPage.assertComputerText();
@@ -24,6 +29,7 @@ public class ComputerTest extends TestBase {
     }
 
     @Test
+    // METHOD FOR ADD PRODUCT TO SHOPPING CART
     public void UserShouldAddProductToShoppingCartFromComputerPage() throws InterruptedException {
         homePage.clickOnComputerLink();
         Thread.sleep(3000);
@@ -43,7 +49,7 @@ public class ComputerTest extends TestBase {
 
         desktopPage.clickOn400GBHarddrive();
         desktopPage.clickAddToCartButton();
-//      Assert The product has been added to your shopping cart text
+        // CALL ASSERT METHOD FROM DESKTOP PAGE AND ASSSERT ACTUAL AND EXPECTED TEXT
         desktopPage.assertProductAddSuccessfullyText();
 
 

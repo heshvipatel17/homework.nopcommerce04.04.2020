@@ -21,58 +21,59 @@ public class RegisterPage extends Utility {
     By registationCompletedText = By.xpath("//div[@class='page-body']//div[text()='Your registration completed']");
     By logOutOnNopCommerce = By.xpath("//a[@class='ico-logout']");
 
+    // METHOD FOR ASSERT YOUR PERSONAL DETAIL TEXT
     public void assertTextYourPersonalDetail() {
         verifyText(registerText, "Your Personal Details");
     }
-
+    // METHOD FOR ASSERT REGISTER COMPLETED TEXT
     public void assertRegisterCompletedText() {
         verifyText(registationCompletedText, "Your registration completed");
     }
-
+    // METHOD FOR CLICK ON GENDER RADIO BUTTON
     public void clickOnGenderRadioButton() {
         clickOnElement(genderField);
     }
-
+    // METHOD FOR ENTER FIRST NAME
     public void enterFirstName(String firstName) {
         sendTextToElement(firstNameField, firstName);
     }
-
+    // METHOD FOR ENTER LAST NAME
     public void enterlastName(String lastName) {
         sendTextToElement(lastNameField, lastName);
     }
-
+    // METHOD FOR ENTER DATE
     public void enterDateField(String date) {
         sendTextToElement(dateField, date);
     }
-
+    // METHOD FOR ENTER MONTH
     public void enterMonthField(String month) {
         sendTextToElement(monthField, month);
     }
-
+    // METHOD FOR ENTER YEAR
     public void enterYearField(String year) {
         sendTextToElement(yearField, year);
     }
-
+    // METHOD FOR ENTER EMAIL
     public void enterEmailId(String email) {
         sendTextToElement(emailField, email);
     }
-
+    // METHOD FOR ENTER COMPANY NAME
     public void enterCompanyName(String companyName) {
         sendTextToElement(companyNameField, companyName);
     }
-
+    // METHOD FOR ENTER PASSWORD
     public void enterPassword(String password) {
         sendTextToElement(passwordField, password);
     }
-
+    // METHOD FOR ENTER CONFIRM PASSWORD
     public void enterConfirmPassword(String confirmPassword) {
         sendTextToElement(confirmPasswordField, confirmPassword);
     }
-
+    // METHOD FOR CLICK ON REGISTER BUTTON
     public void clickOnRegisterButton() {
         clickOnElement(registerBtn);
     }
-
+    // METHOD FOR LOGOUT FROM NOPCOMMERCE
     public void clickOnLogOutButton(){
         clickOnElement(logOutOnNopCommerce);
     }

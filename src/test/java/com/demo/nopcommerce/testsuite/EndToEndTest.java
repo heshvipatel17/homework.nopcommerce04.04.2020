@@ -25,6 +25,7 @@ public class EndToEndTest extends TestBase {
     }
 
     @Test
+    // METHOD FOR REGISTER NOPCOMMERCE WEBSITE
     public void varifyUserShouldRegisterSuccessfully() throws InterruptedException {
         homePage.clickOnRegisterLink();
         Thread.sleep(3000);
@@ -46,6 +47,7 @@ public class EndToEndTest extends TestBase {
     }
 
     @Test
+    // METHOD FOR LOGIN NOPCOMMERCE WEBSITE
     public void verifyUserShouldLoginSuccessfully() throws InterruptedException {
         homePage.clickOnLoginLink();
         Thread.sleep(3000);
