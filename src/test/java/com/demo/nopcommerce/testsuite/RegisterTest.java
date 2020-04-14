@@ -5,6 +5,7 @@ import com.demo.nopcommerce.pages.HomePage;
 import com.demo.nopcommerce.pages.RegisterPage;
 import com.demo.nopcommerce.testbase.TestBase;
 import com.demo.nopcommerce.utility.Utility;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -28,7 +29,7 @@ public class RegisterTest extends TestBase {
     String yearDOB = loadProperty.getProperty("yearDOB");
 
     // RANDOM EMAIL MATHOD
-    @BeforeTest(groups = {"Sanity","Smoke","Regression"})
+    @BeforeTest(groups = {"Sanity", "Smoke", "Regression"})
     public void sendemail() {
         email = "test" + Utility.getRandomString(5) + "@gmail.com";
 
@@ -41,7 +42,10 @@ public class RegisterTest extends TestBase {
         // CALL CLICK ON REGISTER LINK METHOD FROM HOME PAGE
         homePage.clickOnRegisterLink();
         // CALL ASSERT METHOD FROM REGISTER PAGE FOR ASSERT ACTUAL AND EXPECTED TEXT
-        registerpage.assertTextYourPersonalDetail();
+        String expectedResult = "Your Personal Details";
+        String actualResult = registerpage.assertTextYourPersonalDetail();
+        Assert.assertEquals(expectedResult, actualResult);
+    //    registerpage.assertTextYourPersonalDetail();
 
     }
 
@@ -63,7 +67,33 @@ public class RegisterTest extends TestBase {
         registerpage.enterConfirmPassword(password);
         registerpage.clickOnRegisterButton();
         // CALL ASSERT METHOD FROM REGISTER PAGE AND ASSERT ACTUAL AND EXPECTED TEXT
-        registerpage.assertRegisterCompletedText();
+        //registerpage.assertRegisterCompletedText();
+        String expectedResult = "Your registration completed";
+        String actualResult = registerpage.assertRegisterCompletedText();
+        Assert.assertEquals(expectedResult, actualResult);
+
+    }
+    @Test(priority = 2, groups = {"Sanity", "Regression"})
+    public void varifyUserShouldNotRegisterWithInvalidCredintial() throws InterruptedException {
+
+        homePage.clickOnRegisterLink();
+        Thread.sleep(3000);
+        registerpage.clickOnGenderRadioButton();
+        registerpage.enterFirstName(firstName);
+        registerpage.enterlastName(lastName);
+        registerpage.enterDateField(dayDOB);
+        registerpage.enterMonthField(monthDOB);
+        registerpage.enterYearField(yearDOB);
+        registerpage.enterEmailId(email);
+        registerpage.enterCompanyName(companyName);
+        registerpage.enterPassword(password);
+        registerpage.enterConfirmPassword(password);
+        registerpage.clickOnRegisterButton();
+        // CALL ASSERT METHOD FROM REGISTER PAGE AND ASSERT ACTUAL AND EXPECTED TEXT
+//        registerpage.assertRegisterCompletedText();
+        String expectedResult = "Your registration completed....";
+        String actualResult = registerpage.assertRegisterCompletedText();
+        Assert.assertEquals(expectedResult, actualResult);
 
     }
 }

@@ -23,7 +23,8 @@ public class DesktopPage extends Utility {
         clickOnElement(addtoCartbtn);
     }
     // METHOD FOR ASSERT PRODUCT ADD SUCESSFULLY TEXT
-    public void assertProductAddSuccessfullyText() {
-        verifyText(productAddSfullyText, "The product has been added to your shopping cart");
+
+    public String assertProductAddSuccessfullyText() {
+        return getTextFromElement(productAddSfullyText);
     }
 }

@@ -9,9 +9,9 @@ public class ComputerPage extends Utility {
     By desktopbtn = By.xpath("//li[@class='inactive']//a[@href='/desktops']");
 
     // METHOD FOR ASSERT COMPUTER TEXT
-    public void assertComputerText() {
-        verifyText(computerText, "Computers");
 
+    public String assertComputerText() {
+        return getTextFromElement(computerText);
     }
     // METHOD FOR CLICK ON DESKTOP BUTTON
     public void clickOnDesktopButton() {
