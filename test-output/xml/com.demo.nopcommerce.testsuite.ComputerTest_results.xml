@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Computer Test"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="11.317">
+  <properties />
+  
+  
+            <testcase name="UserShouldNavigateToComputerPage" time="1.146" classname="com.demo.nopcommerce.testsuite.ComputerTest" />
+                <testcase name="UserShouldAddProductToShoppingCartFromComputerPage" time="10.171" classname="com.demo.nopcommerce.testsuite.ComputerTest" />
+      
+</testsuite>

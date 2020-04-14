@@ -20,7 +20,7 @@ public class ComputerTest extends TestBase {
     public JavascriptExecutor jse;
 
 
-    @Test
+    @Test(priority = 0, groups = {"Sanity", "Regression"})
     // METHOD FOR NAVIGATE COMPUTER PAGE
     public void UserShouldNavigateToComputerPage() {
         homePage.clickOnComputerLink();
@@ -28,7 +28,7 @@ public class ComputerTest extends TestBase {
 
     }
 
-    @Test
+    @Test(priority = 1, groups = {"Smke", "Regression"})
     // METHOD FOR ADD PRODUCT TO SHOPPING CART
     public void UserShouldAddProductToShoppingCartFromComputerPage() throws InterruptedException {
         homePage.clickOnComputerLink();

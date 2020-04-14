@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="End To End Test"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="12.880">
+  <properties />
+  
+  
+            <testcase name="varifyUserShouldRegisterSuccessfully" time="6.680" classname="com.demo.nopcommerce.testsuite.EndToEndTest" />
+                <testcase name="verifyUserShouldLoginSuccessfully" time="6.200" classname="com.demo.nopcommerce.testsuite.EndToEndTest" />
+      
+</testsuite>

@@ -1,5 +1,6 @@
 package com.demo.nopcommerce.testsuite;
 
+import com.demo.nopcommerce.loadproperty.LoadProperty;
 import com.demo.nopcommerce.pages.HomePage;
 import com.demo.nopcommerce.pages.RegisterPage;
 import com.demo.nopcommerce.testbase.TestBase;
@@ -10,14 +11,30 @@ import org.testng.annotations.Test;
 public class RegisterTest extends TestBase {
 
     String email = null;
-    String password = "Abc@123";
+//    String password = "Abc@123";
 
     // OBJECT CREATE FOR HOME PAGE
     HomePage homePage = new HomePage();
     // OBJECT CREATE FOR REGISTER PAGE
     RegisterPage registerpage = new RegisterPage();
+    LoadProperty loadProperty = new LoadProperty();
+    //getting key from config.properties
+    String firstName = loadProperty.getProperty("firstName");
+    String lastName = loadProperty.getProperty("lastName");
+    String password = loadProperty.getProperty("password");
+    String companyName = loadProperty.getProperty("companyName");
+    String dayDOB = loadProperty.getProperty("dayDOB");
+    String monthDOB = loadProperty.getProperty("monthDOB");
+    String yearDOB = loadProperty.getProperty("yearDOB");
 
-    @Test
+    // RANDOM EMAIL MATHOD
+    @BeforeTest(groups = {"Sanity","Smoke","Regression"})
+    public void sendemail() {
+        email = "test" + Utility.getRandomString(5) + "@gmail.com";
+
+    }
+
+    @Test(priority = 0, groups = {"Sanity", "Regression"})
     // METHOD FOR USER NAVIGATE TO REGISTER PAGE
     public void varifyUserShouldNavigateToRegisterPage() {
 
@@ -27,28 +44,21 @@ public class RegisterTest extends TestBase {
         registerpage.assertTextYourPersonalDetail();
 
     }
-    // RANDOM EMAIL MATHOD
-    @BeforeTest
-    public void sendemail() {
-        email = "test" + Utility.getRandomString(5) + "@gmail.com";
 
-
-    }
-
-    @Test
+    @Test(priority = 1, groups = {"Sanity", "Regression"})
     // METHOD FOR REGISTER NOPCOMMERCE
     public void varifyUserShouldRegisterSuccessfully() throws InterruptedException {
 
         homePage.clickOnRegisterLink();
         Thread.sleep(3000);
         registerpage.clickOnGenderRadioButton();
-        registerpage.enterFirstName("Jitu");
-        registerpage.enterlastName("Patel");
-        registerpage.enterDateField("1");
-        registerpage.enterMonthField("January");
-        registerpage.enterYearField("2000");
+        registerpage.enterFirstName(firstName);
+        registerpage.enterlastName(lastName);
+        registerpage.enterDateField(dayDOB);
+        registerpage.enterMonthField(monthDOB);
+        registerpage.enterYearField(yearDOB);
         registerpage.enterEmailId(email);
-        registerpage.enterCompanyName("Prime");
+        registerpage.enterCompanyName(companyName);
         registerpage.enterPassword(password);
         registerpage.enterConfirmPassword(password);
         registerpage.clickOnRegisterButton();

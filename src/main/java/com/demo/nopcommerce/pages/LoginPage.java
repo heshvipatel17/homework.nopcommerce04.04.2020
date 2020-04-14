@@ -10,8 +10,10 @@ public class LoginPage extends Utility {
     By loginBtn = By.xpath("//input[@class='button-1 login-button']");
     By welcomeText = By.xpath("//div[@class='page-title']//h1");
     By welcomeStoreText = By.xpath("//div[@class='topic-block-title']//h2[text()='Welcome to our store']");
+    By loginErrorTxt = By.cssSelector("div.message-error");
 
-//  METHOD FOR ENTER EMAIL ON EMAIL FIELD
+
+    //  METHOD FOR ENTER EMAIL ON EMAIL FIELD
     public void enterEmailId(String email) {
         sendTextToElement(emailField, email);
     }
@@ -32,4 +34,8 @@ public class LoginPage extends Utility {
     public void assertgetWelcomeStoreText() {
         verifyText(welcomeStoreText, "Welcome to our store");
     }
+    public void verifyLoginErrorMessage(String str) {
+        verifyText(loginErrorTxt, str);
+    }
+
 }

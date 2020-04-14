@@ -17,14 +17,14 @@ public class EndToEndTest extends TestBase {
     LoginPage loginPage = new LoginPage();
     RegisterPage registerPage = new RegisterPage();
 
-    @BeforeTest
+    @BeforeTest(groups = {"Sanity","Smoke","Regression"})
     public void sendemail() {
         email = "test" + Utility.getRandomString(5) + "@gmail.com";
 
 
     }
 
-    @Test
+    @Test(priority = 1, groups = {"Sanity", "Regression"})
     // METHOD FOR REGISTER NOPCOMMERCE WEBSITE
     public void varifyUserShouldRegisterSuccessfully() throws InterruptedException {
         homePage.clickOnRegisterLink();
@@ -46,7 +46,7 @@ public class EndToEndTest extends TestBase {
         registerPage.clickOnLogOutButton();
     }
 
-    @Test
+    @Test(priority = 2, groups = {"Sanity", "Regression"})
     // METHOD FOR LOGIN NOPCOMMERCE WEBSITE
     public void verifyUserShouldLoginSuccessfully() throws InterruptedException {
         homePage.clickOnLoginLink();
