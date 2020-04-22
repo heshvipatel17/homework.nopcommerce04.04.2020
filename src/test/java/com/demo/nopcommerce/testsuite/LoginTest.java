@@ -1,32 +1,32 @@
 package com.demo.nopcommerce.testsuite;
 
-import com.demo.nopcommerce.loadproperty.LoadProperty;
 import com.demo.nopcommerce.pages.HomePage;
 import com.demo.nopcommerce.pages.LoginPage;
 import com.demo.nopcommerce.testbase.TestBase;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTest extends TestBase {
 
-    // OBJECT CREATE FOR LOAD PROPERTY
-    LoadProperty loadProperty = new LoadProperty();
-    // OBJECT CREATE FOR HOME PAGE
-    HomePage homePage = new HomePage();
-    // OBJECT CREATE FOR LOGIN PAGE
-    LoginPage loginPage = new LoginPage();
+    HomePage homePage;
+    LoginPage loginPage;
 
-    String email = loadProperty.getProperty("email");
-    String password = loadProperty.getProperty("password");
-    String invalidemail = loadProperty.getProperty("invalidemail");
+    @BeforeMethod(groups = {"Regression", "Smoke", "Sanity"})
+    public void setUp() {
+        homePage = new HomePage();
+        loginPage = new LoginPage();
+
+    }
 
     @Test(priority = 0, groups = {"Sanity", "Regression"})
-    //  METHOD USER SHOULD NAVIGATE TO LOGIN PAGE
     public void verifyUserShouldNavigateToLoginPage() {
+        //  METHOD USER SHOULD NAVIGATE TO LOGIN PAGE
 
         // CALL CLICK ON LOGIN LINK METHOD FROM HOME PAGE
         homePage.clickOnLoginLink();
+
         // CALL ASSERT ON WELCOME TEXT FROM LOGIN PAGE
-        loginPage.assertgetWelcomeText();
+        loginPage.assertgetWelcomeText("Welcome, Please Sign In!");
 
     }
 
@@ -36,15 +36,15 @@ public class LoginTest extends TestBase {
 
         // CALL CLICK ON LOGIN LINK METHOD FROM HOME PAGE
         homePage.clickOnLoginLink();
-        Thread.sleep(3000);
+    //    Thread.sleep(3000);
         // CALL EMAIL METHOD FROM LOGIN PAGE AND ENTER EMAIL ID
-        loginPage.enterEmailId(email);
+        loginPage.enterEmailId("bjrpatel17@yahoo.com");
         // CALL PASSWORD METHOD FROM LOGIN PAGE AND ENTER PASSWORD
-        loginPage.enterPassword(password);
+        loginPage.enterPassword("abc123");
         // CALL CLICK ON LOGIN BUTTON METHOD FROM LOGIN PAGE
         loginPage.clickOnLoginButton();
         // CALL ASSERT METHOD FROM LOGIN PAGE AND ASSERT ACTUAL AND EXPECTED TEXT
-        loginPage.assertgetWelcomeStoreText();
+        loginPage.assertgetWelcomeStoreText("Welcome to our store");
 
     }
 
@@ -53,9 +53,9 @@ public class LoginTest extends TestBase {
         //click Login link on HomePage
         homePage.clickOnLoginLink();
         //send text to email field on LoginPage same email as used for registration
-        loginPage.enterEmailId(invalidemail);
+        loginPage.enterEmailId("bjrpatel17@gmail.com");
         //send text to password field on LoginPage
-        loginPage.enterPassword(password);
+        loginPage.enterPassword("abc123");
         //click on login button on LoginPage
         loginPage.clickOnLoginButton();
 

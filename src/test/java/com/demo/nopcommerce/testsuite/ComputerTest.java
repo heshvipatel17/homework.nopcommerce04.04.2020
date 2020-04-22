@@ -1,21 +1,30 @@
 package com.demo.nopcommerce.testsuite;
 
+import com.demo.nopcommerce.loadproperty.LoadProperty;
 import com.demo.nopcommerce.pages.ComputerPage;
 import com.demo.nopcommerce.pages.DesktopPage;
 import com.demo.nopcommerce.pages.HomePage;
 import com.demo.nopcommerce.testbase.TestBase;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ComputerTest extends TestBase {
 
-    // OBJECT CREATE FOR HOME PAGE
-    HomePage homePage = new HomePage();
-    // OBJECT CREATE FOR COMPUTER PAGE
-    ComputerPage computerPage = new ComputerPage();
-    //OBJECT CREATE FOR DESKTOP PAGE
-    DesktopPage desktopPage = new DesktopPage();
+    HomePage homePage;
+    ComputerPage computerPage;
+    LoadProperty loadProperty;
+    DesktopPage desktopPage;
+
+    @BeforeMethod(groups = {"Sanity", "Smoke", "Regression"})
+    public void setUp(){
+        homePage=new HomePage();
+        computerPage=new ComputerPage();
+        loadProperty=new LoadProperty();
+        desktopPage = new DesktopPage();
+    }
+
 
     public JavascriptExecutor js;
     public JavascriptExecutor jse;

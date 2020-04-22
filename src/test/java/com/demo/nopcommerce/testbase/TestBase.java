@@ -18,13 +18,11 @@ public class TestBase extends BasePage {
     String baseUrl = loadProperty.getProperty("baseUrl");
     String browser = loadProperty.getProperty("browser");
 
-
-
     //open browser
     @BeforeMethod (groups = {"Sanity","Smoke","Regression"})
     public void openBrowser() {
         browserSelector.selectBrowser(browser);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(baseUrl);
     }

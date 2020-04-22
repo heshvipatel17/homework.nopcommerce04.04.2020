@@ -1,97 +1,158 @@
 package com.demo.nopcommerce.pages;
 
 import com.demo.nopcommerce.utility.Utility;
-import org.openqa.selenium.By;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.testng.Reporter;
 
 public class RegisterPage extends Utility {
 
-    By registerText = By.xpath("//div[@class='title']//strong[text()='Your Personal Details']");
+    private static final Logger log = LogManager.getLogger(RegisterPage.class.getName());
 
-    By genderField = By.xpath("//input[@id='gender-male']");
-    By firstNameField = By.xpath("//input[@id='FirstName']");
-    By lastNameField = By.xpath("//input[@id='LastName']");
-    By dateField = By.xpath("//select[@name='DateOfBirthDay']");
-    By monthField = By.xpath("//select[@name='DateOfBirthMonth']");
-    By yearField = By.xpath("//select[@name='DateOfBirthYear']");
-    By emailField = By.id("Email");
-    By companyNameField = By.xpath("//input[@name='Company']");
-    By passwordField = By.xpath("//input[@name='Password']");
-    By confirmPasswordField = By.xpath("//input[@name='ConfirmPassword']");
-    By registerBtn = By.xpath("//input[@name='register-button']");
-    By registationCompletedText = By.xpath("//div[@class='page-body']//div[text()='Your registration completed']");
-    By logOutOnNopCommerce = By.xpath("//a[@class='ico-logout']");
+    @FindBy(xpath = "//div[@class='title']//strong[text()='Your Personal Details']")
+    WebElement _personalText;
+
+    @FindBy(xpath = "//input[@id='gender-male']")
+    WebElement _genderField;
+
+    @FindBy(xpath = "//input[@id='FirstName']")
+    WebElement _firstNameField;
+
+    @FindBy(xpath = "//input[@id='LastName']")
+    WebElement _lastNameField;
+
+    @FindBy(xpath = "//select[@name='DateOfBirthDay']")
+    WebElement _dateField;
+
+    @FindBy(xpath = "//select[@name='DateOfBirthMonth']")
+    WebElement _monthField;
+
+    @FindBy(xpath = "//select[@name='DateOfBirthYear']")
+    WebElement _yearField;
+
+    @FindBy(id = "Email")
+    WebElement _emailField;
+
+    @FindBy(xpath = "//input[@name='Company']")
+    WebElement _companyNameField;
+
+    @FindBy(xpath = "//input[@name='Password']")
+    WebElement _passwordField;
+
+    @FindBy(xpath = "//input[@name='ConfirmPassword']")
+    WebElement _confirmPasswordField;
+
+    @FindBy(xpath = "//input[@name='register-button']")
+    WebElement _registerBtn;
+
+    @FindBy(xpath = "//div[@class='page-body']//div[text()='Your registration completed']")
+    WebElement _registationCompletedText;
+
+    @FindBy(xpath = "//a[@class='ico-logout']")
+    WebElement _logOutOnNopCommerce;
+
 
     // METHOD FOR ASSERT YOUR PERSONAL DETAIL TEXT
-    public String assertTextYourPersonalDetail() {
-        return getTextFromElement(registerText);
+    public void verifytextYourPersonalDetail(String personalTxt) {
+        waitUntilElementToBeClickable(_personalText, 20);
+        Reporter.log("Verify personal Text: " + personalTxt + " displayed on personal text page " + _personalText.toString() + "<br>");
+        verifyText(_personalText, personalTxt);
+        log.info("Verify personal Text: " + personalTxt + " displayed on personal text page" + _personalText.toString());
     }
 
-    // METHOD FOR ASSERT REGISTER COMPLETED TEXT
-    public String assertRegisterCompletedText() {
-        return getTextFromElement(registationCompletedText);
-    }
-
-    //    public String assertRegisterCompletedText() {
-    //      getTextFromElement(registationCompletedText);
-    //}
 
     // METHOD FOR CLICK ON GENDER RADIO BUTTON
     public void clickOnGenderRadioButton() {
-        clickOnElement(genderField);
+        waitUntilElementToBeClickable(_genderField, 20);
+        Reporter.log(" Click to tick Gender Male " + _genderField.toString() + "<br>");
+        clickOnElement(_genderField);
+        log.info(" Click to tick Gender Male " + _genderField.toString());
     }
 
     // METHOD FOR ENTER FIRST NAME
     public void enterFirstName(String firstName) {
-        sendTextToElement(firstNameField, firstName);
+        waitUntilElementToBeClickable(_firstNameField, 20);
+        Reporter.log("Enter first Name: " + firstName + " to first name field " + _firstNameField.toString() + "<br>");
+        sendTextToElement(_firstNameField, firstName);
+        log.info("Enter first Name: " + firstName + " to first name field " + _firstNameField.toString());
     }
 
     // METHOD FOR ENTER LAST NAME
     public void enterlastName(String lastName) {
-        sendTextToElement(lastNameField, lastName);
+        Reporter.log("Enter last name " + lastName + " to last name field" + _lastNameField.toString() + "<br>");
+        sendTextToElement(_lastNameField, lastName);
+        log.info("Enter last name " + lastName + " to last name field" + _lastNameField.toString());
     }
 
     // METHOD FOR ENTER DATE
     public void enterDateField(String date) {
-        sendTextToElement(dateField, date);
+        Reporter.log("Enter date " + date + " to date field " + _dateField.toString() + "<br>");
+        sendTextToElement(_dateField, date);
+        log.info("Enter date " + date + " to date field " + _dateField.toString());
     }
 
     // METHOD FOR ENTER MONTH
     public void enterMonthField(String month) {
-        sendTextToElement(monthField, month);
+        Reporter.log(" Enter month" + month + " to month field " + _monthField.toString() + "<br>");
+        sendTextToElement(_monthField, month);
+        log.info(" Enter momth" + month + " to month field " + _monthField.toString());
     }
 
     // METHOD FOR ENTER YEAR
     public void enterYearField(String year) {
-        sendTextToElement(yearField, year);
+        Reporter.log(" Enter year " + year + " to year field " + _yearField.toString() + "<br>");
+        sendTextToElement(_yearField, year);
+        log.info(" Enter year " + year + " to year field " + _yearField.toString());
     }
 
     // METHOD FOR ENTER EMAIL
     public void enterEmailId(String email) {
-        sendTextToElement(emailField, email);
+        Reporter.log("Enter email " + email + " to email field " + _emailField.toString() + "<br>");
+        sendTextToElement(_emailField, email);
+        log.info("Enter email " + email + " to email field " + _emailField.toString());
     }
 
     // METHOD FOR ENTER COMPANY NAME
     public void enterCompanyName(String companyName) {
-        sendTextToElement(companyNameField, companyName);
+        Reporter.log("Enter company name " + companyName + " to company's name field " + _companyNameField.toString() + "<br>");
+        sendTextToElement(_companyNameField, companyName);
+        log.info("Enter company name " + companyName + " to company's name field " + _companyNameField.toString());
     }
 
     // METHOD FOR ENTER PASSWORD
     public void enterPassword(String password) {
-        sendTextToElement(passwordField, password);
+        Reporter.log(" Enter password " + password + " to password field " + _passwordField.toString() + "<br>");
+        sendTextToElement(_passwordField, password);
+        log.info(" Enter password " + password + " to password field " + _passwordField.toString());
     }
 
     // METHOD FOR ENTER CONFIRM PASSWORD
     public void enterConfirmPassword(String confirmPassword) {
-        sendTextToElement(confirmPasswordField, confirmPassword);
+        Reporter.log(" Enter confirm password " + confirmPassword + " to confirm password field " + _confirmPasswordField.toString() + "<br>");
+        sendTextToElement(_confirmPasswordField, confirmPassword);
+        log.info(" Enter confirm password" + confirmPassword + " to confirm password field " + _confirmPasswordField.toString());
     }
 
     // METHOD FOR CLICK ON REGISTER BUTTON
     public void clickOnRegisterButton() {
-        clickOnElement(registerBtn);
+        Reporter.log(" Click on register button " + _registerBtn.toString() + "<br>");
+        clickOnElement(_registerBtn);
+        log.info(" Click on register button " + _registerBtn.toString());
+    }
+
+    // METHOD FOR ASSERT REGISTER COMPLETED TEXT
+    public void assertRegisterCompletedText(String registerCompletedTxt) {
+        Reporter.log("Verify register Text: " + registerCompletedTxt + " displayed on register page " + _registationCompletedText.toString() + "<br>");
+        verifyText(_registationCompletedText, registerCompletedTxt);
+        log.info("Verify register Text: " + registerCompletedTxt + " displayed on register page " + _registationCompletedText.toString());
     }
 
     // METHOD FOR LOGOUT FROM NOPCOMMERCE
     public void clickOnLogOutButton() {
-        clickOnElement(logOutOnNopCommerce);
+        Reporter.log("click on logout button " + _logOutOnNopCommerce.toString() + "<br>");
+        clickOnElement(_logOutOnNopCommerce);
+        log.info("click on logout button " + _logOutOnNopCommerce.toString());
     }
 }

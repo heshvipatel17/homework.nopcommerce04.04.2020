@@ -15,12 +15,12 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-
+        Utility.takeScreenShot();
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-       // This step take screenshot and store in to test-output/html folder
+        // This step take screenshot and store in to test-output/html folder
         String screenshotName = Utility.takeScreenShot(iTestResult.getName());
         // This line required for ReportNG reports
         System.setProperty("org.uncommons.reportng.escape-output", "false");

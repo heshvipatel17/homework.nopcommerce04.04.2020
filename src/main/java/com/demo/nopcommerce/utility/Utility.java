@@ -76,8 +76,23 @@ public class Utility extends BasePage {
     }
 
     /**
+     * This method will return web element
+     */
+    public WebElement getElement(By by) {
+        return driver.findElement(by);
+    }
+
+    /**
+     * This method will return web element
+     */
+    public WebElement getElement(WebElement element) {
+        return (element);
+    }
+
+    /**
      * This method will send text to element or field
      */
+
     public void sendTextToElement(By by, String str) {
         driver.findElement(by).sendKeys(str);
     }
@@ -112,6 +127,7 @@ public class Utility extends BasePage {
         Actions actions = new Actions(driver);
         actions.moveToElement(element).click().perform();
     }
+
 
     /**
      * This method will used to select drop down menu by visible text
@@ -160,6 +176,13 @@ public class Utility extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(by)));
     }
 
+    /**
+     * This method will used to wait web driver until element become clickable
+     */
+    public void waitUntilElementToBeClickable(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
     /**
      * This method will used to wait web driver until presence of element located by locator
      */

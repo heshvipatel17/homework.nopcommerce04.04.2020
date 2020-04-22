@@ -1,32 +1,25 @@
 package com.demo.nopcommerce.testsuite;
 
-import com.demo.nopcommerce.loadproperty.LoadProperty;
 import com.demo.nopcommerce.pages.HomePage;
 import com.demo.nopcommerce.pages.RegisterPage;
 import com.demo.nopcommerce.testbase.TestBase;
 import com.demo.nopcommerce.utility.Utility;
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class RegisterTest extends TestBase {
 
-    String email = null;
-//    String password = "Abc@123";
+    HomePage homePage;
+    RegisterPage registerPage;
 
-    // OBJECT CREATE FOR HOME PAGE
-    HomePage homePage = new HomePage();
-    // OBJECT CREATE FOR REGISTER PAGE
-    RegisterPage registerpage = new RegisterPage();
-    LoadProperty loadProperty = new LoadProperty();
-    //getting key from config.properties
-    String firstName = loadProperty.getProperty("firstName");
-    String lastName = loadProperty.getProperty("lastName");
-    String password = loadProperty.getProperty("password");
-    String companyName = loadProperty.getProperty("companyName");
-    String dayDOB = loadProperty.getProperty("dayDOB");
-    String monthDOB = loadProperty.getProperty("monthDOB");
-    String yearDOB = loadProperty.getProperty("yearDOB");
+    @BeforeMethod(groups = {"Sanity", "Smoke", "Regression"})
+    public void setUp() {
+        homePage = new HomePage();
+        registerPage = new RegisterPage();
+    }
+
+    String email = null;
 
     // RANDOM EMAIL MATHOD
     @BeforeTest(groups = {"Sanity", "Smoke", "Regression"})
@@ -41,59 +34,50 @@ public class RegisterTest extends TestBase {
 
         // CALL CLICK ON REGISTER LINK METHOD FROM HOME PAGE
         homePage.clickOnRegisterLink();
+
         // CALL ASSERT METHOD FROM REGISTER PAGE FOR ASSERT ACTUAL AND EXPECTED TEXT
-        String expectedResult = "Your Personal Details";
-        String actualResult = registerpage.assertTextYourPersonalDetail();
-        Assert.assertEquals(expectedResult, actualResult);
-    //    registerpage.assertTextYourPersonalDetail();
+        registerPage.verifytextYourPersonalDetail("Your Personal Details");
 
     }
 
     @Test(priority = 1, groups = {"Sanity", "Regression"})
     // METHOD FOR REGISTER NOPCOMMERCE
-    public void varifyUserShouldRegisterSuccessfully() throws InterruptedException {
+    public void varifyUserShouldRegisterSuccessfully()  {
 
         homePage.clickOnRegisterLink();
-        Thread.sleep(3000);
-        registerpage.clickOnGenderRadioButton();
-        registerpage.enterFirstName(firstName);
-        registerpage.enterlastName(lastName);
-        registerpage.enterDateField(dayDOB);
-        registerpage.enterMonthField(monthDOB);
-        registerpage.enterYearField(yearDOB);
-        registerpage.enterEmailId(email);
-        registerpage.enterCompanyName(companyName);
-        registerpage.enterPassword(password);
-        registerpage.enterConfirmPassword(password);
-        registerpage.clickOnRegisterButton();
-        // CALL ASSERT METHOD FROM REGISTER PAGE AND ASSERT ACTUAL AND EXPECTED TEXT
-        //registerpage.assertRegisterCompletedText();
-        String expectedResult = "Your registration completed";
-        String actualResult = registerpage.assertRegisterCompletedText();
-        Assert.assertEquals(expectedResult, actualResult);
+    //    Thread.sleep(3000);
+        registerPage.clickOnGenderRadioButton();
+        registerPage.enterFirstName("Jitu");
+        registerPage.enterlastName("Patel");
+        registerPage.enterDateField("1");
+        registerPage.enterMonthField("January");
+        registerPage.enterYearField("1998");
+        registerPage.enterEmailId(email);
+        registerPage.enterCompanyName("Prime");
+        registerPage.enterPassword("abc123");
+        registerPage.enterConfirmPassword("abc123");
+        registerPage.clickOnRegisterButton();
+        registerPage.assertRegisterCompletedText("Your registration completed");
 
     }
+
     @Test(priority = 2, groups = {"Sanity", "Regression"})
-    public void varifyUserShouldNotRegisterWithInvalidCredintial() throws InterruptedException {
+    public void varifyUserShouldNotRegisterWithInvalidCredintial() {
 
         homePage.clickOnRegisterLink();
-        Thread.sleep(3000);
-        registerpage.clickOnGenderRadioButton();
-        registerpage.enterFirstName(firstName);
-        registerpage.enterlastName(lastName);
-        registerpage.enterDateField(dayDOB);
-        registerpage.enterMonthField(monthDOB);
-        registerpage.enterYearField(yearDOB);
-        registerpage.enterEmailId(email);
-        registerpage.enterCompanyName(companyName);
-        registerpage.enterPassword(password);
-        registerpage.enterConfirmPassword(password);
-        registerpage.clickOnRegisterButton();
-        // CALL ASSERT METHOD FROM REGISTER PAGE AND ASSERT ACTUAL AND EXPECTED TEXT
-//        registerpage.assertRegisterCompletedText();
-        String expectedResult = "Your registration completed....";
-        String actualResult = registerpage.assertRegisterCompletedText();
-        Assert.assertEquals(expectedResult, actualResult);
+    //    Thread.sleep(3000);
+        registerPage.clickOnGenderRadioButton();
+        registerPage.enterFirstName("Jitu");
+        registerPage.enterlastName("Patel");
+        registerPage.enterDateField("1");
+        registerPage.enterMonthField("January");
+        registerPage.enterYearField("1998");
+        registerPage.enterEmailId(email);
+        registerPage.enterCompanyName("Prime");
+        registerPage.enterPassword("abc123");
+        registerPage.enterConfirmPassword("abc123");
+        registerPage.clickOnRegisterButton();
+        registerPage.assertRegisterCompletedText("Your registration completed....");
 
     }
 }
